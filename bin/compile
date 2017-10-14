@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+status 'Starting Custom Build Pack Compile Sequence'
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
