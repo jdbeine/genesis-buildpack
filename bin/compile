@@ -109,8 +109,8 @@ fi
 
 
 # install yarm
-status "Installing YARN Package Manager"
-curl -o- -L https://yarnpkg.com/install.sh | bash
+status "Installing YARN Package Manager via npm"
+npm install --global yarn
 
 
 
