@@ -79,7 +79,7 @@ curl ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-${pcre_version}
 mkdir $build_dir/vendor/pcre-${pcre_version}
 
 status "Downloading and installing nginx"
-nginx_version=${NGINX_VER:-1.8.9}
+nginx_version=${NGINX_VER:-1.9.5}
 nginx_url="http://nginx.org/download/nginx-$nginx_version.tar.gz"
 curl $nginx_url -s -o - | tar xzf - -C $build_dir/vendor
 mkdir $build_dir/vendor/nginx
