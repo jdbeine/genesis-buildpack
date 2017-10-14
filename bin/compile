@@ -110,7 +110,8 @@ fi
 
 # install yarm
 status "Installing YARN Package Manager"
-apk add yarn
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
 
 
 
