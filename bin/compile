@@ -107,27 +107,36 @@ elif test -d $cache_dir/node/node_modules; then
   fi
 fi
 
-# Restore bower_components from cache if it exists
-if test -d $build_dir/bower_components; then
-  status "Found existing bower_components directory; skipping cache"
-elif test -d $cache_dir/bower_components; then
-  status "Restoring bower_components directory from cache"
-  cp -r $cache_dir/bower_components $build_dir/
-fi
 
-status "Installing bower which is required by other dependencies"
-npm install bower --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
-PATH=$build_dir/node_modules/bower/bin:$PATH
+# install yarm
+status "Installing YARN Package Manager"
+apk add yarn
 
-status "Installing dependencies"
-# Make npm output to STDOUT instead of its default STDERR
-npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+
+
+
+
+# # Restore bower_components from cache if it exists
+# if test -d $build_dir/bower_components; then
+#   status "Found existing bower_components directory; skipping cache"
+# elif test -d $cache_dir/bower_components; then
+#   status "Restoring bower_components directory from cache"
+#   cp -r $cache_dir/bower_components $build_dir/
+# fi
+
+# status "Installing bower which is required by other dependencies"
+# npm install bower --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+# PATH=$build_dir/node_modules/bower/bin:$PATH
+
+# status "Installing dependencies"
+# # Make npm output to STDOUT instead of its default STDERR
+# npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 
 # Add the project's binaries to the PATH
 PATH=$build_dir/node_modules/.bin:$PATH
 
-status "Pruning cached bower dependencies not specified in bower.json"
-bower prune 2>&1 | indent
+# status "Pruning cached bower dependencies not specified in bower.json"
+# bower prune 2>&1 | indent
 
 # Persist goodies like node-version in the slug
 mkdir -p $build_dir/.heroku
@@ -154,13 +163,13 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
-bower install bower.json  | indent
+# bower install bower.json  | indent
 
-# If app has a bower_components directory, cache it.
-if test -d $build_dir/bower_components; then
-  status "Caching bower_components directory for future builds"
-  cp -r $build_dir/bower_components $cache_dir/
-fi
+# # If app has a bower_components directory, cache it.
+# if test -d $build_dir/bower_components; then
+#   status "Caching bower_components directory for future builds"
+#   cp -r $build_dir/bower_components $cache_dir/
+# fi
 
 status "Building application $build_env distribution"
 node_modules/gulp/bin/gulp.js build --environment $build_env | indent
