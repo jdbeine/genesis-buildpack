@@ -154,7 +154,7 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
-bower install bower.json | indent
+bower install  | indent
 
 # If app has a bower_components directory, cache it.
 if test -d $build_dir/bower_components; then
