@@ -173,4 +173,5 @@ rm -rf "$build_dir/.npm"
 # fi
 
 status "Building application $build_env distribution"
-node_modules/gulp/bin/gulp.js build --environment $build_env | indent
+#node_modules/gulp/bin/gulp.js build --environment $build_env | indent
+yarn
