@@ -9,6 +9,10 @@ cache_dir=$2
 env_dir=$3
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
+
+sudo apt-get update
+sudo apt-get install build-essential
+
 # Fix leak
 unset GIT_DIR
 
@@ -109,7 +113,7 @@ fi
 
 
 # install yarm
-status "Installing YARN Package Manager via npm"
+# status "Installing YARN Package Manager via npm"
 #npm install --global yarn
 
 
